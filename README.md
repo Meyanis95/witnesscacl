@@ -11,6 +11,7 @@ sudo apt install build-essential cmake m4
 ## Compilation
 
 ### Preparation
+
 ```sh
 git submodule init
 git submodule update
@@ -62,29 +63,31 @@ make android_x86_64
 Requirements: Xcode.
 
 1. Run:
-    ````sh
-    ./build_gmp.sh ios
-    make ios
-    ````
-2. Open generated Xcode project. 
+   ```sh
+   ./build_gmp.sh ios
+   make ios
+   ```
+2. Open generated Xcode project.
 3. Add compilation flag `-D_LONG_LONG_LIMB` to all build targets.
 4. Add compilation flag `-DCIRCUIT_NAME=auth`, `-DCIRCUIT_NAME=sig` and `-DCIRCUIT_NAME=mtp` to the respective targets.
 5. Compile witnesscalc.
 
 ## Updating circuits
+
 1. Compile a circuit with compile-circuit.sh script in circuits repo as usual.
 2. Replace existing <circuitname>.cpp and <circuitname>.dat files with generated ones (e.g. auth.cpp & auth.dat).
 3. Enclose all the code inside <circuitname>.cpp file with `namespace CIRCUIT_NAME` (do not replace `CIRCUIT_NAME` with the real name, it will be replaced at compilation), like this:
+
    ```c++
-   #include ... 
-   #include ... 
-   
+   #include ...
+   #include ...
+
    namespace CIRCUIT_NAME {
-   
+
    // millions of code lines here
-   
+
    } // namespace
-    
+
    ```
 
 ## License
